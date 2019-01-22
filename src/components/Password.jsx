@@ -24,12 +24,28 @@ const styles = theme => ({
 });
 
 class Password extends Component {
+  state = {
+    submittedPassword: ""
+  };
+
+  handleChange = event => {
+    this.setState({
+      submittedPassword: event.target.value
+    });
+    event.preventDefault();
+  };
+
+  handleSubmit = event => {
+    this.props.handlePasswordSubmission(Number(this.state.submittedPassword));
+    event.preventDefault();
+  };
+
   render() {
     const { classes } = this.props;
     console.log(this.props.value);
 
     return (
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={this.handleSubmit}>
         <Typography variant="h4" gutterBottom>
           Welcome
         </Typography>
@@ -42,6 +58,8 @@ class Password extends Component {
             name="password"
             type="password"
             id="password"
+            value={this.state.submittedPassword}
+            onChange={this.handleChange}
             autoComplete="current-password"
           />
         </FormControl>
@@ -51,7 +69,6 @@ class Password extends Component {
             size="large"
             variant="outlined"
             className={classes.submit}
-            onClick={this.props.handleClick}
           >
             Submit
           </Button>

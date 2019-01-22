@@ -39,15 +39,29 @@ const styles = theme => ({
 
 class SignIn extends Component {
   state = {
-    emailSubmitted: false,
-    emailId: ""
+    passwords: {
+      "xyz@example.com": 1234,
+      "uvw@example.com": 2345,
+      "abc@example.com": 3456
+    },
+    emails: ["xyz@example.com", "abc@example.com", "uvw@example.com"],
+    IsEmailSubmitted: false,
+
+    submittedEmail: "",
+    submittedPassword: ""
   };
 
-  handleClick = param => {
+  handleEmailSubmission = submittedEmail => {
     this.setState({
-      emailId: param
+      submittedEmail: submittedEmail,
+      IsEmailSubmitted: true
     });
-    this.setState({ emailSubmitted: true });
+  };
+
+  handlePasswordSubmission = submittedPassword => {
+    if (this.state.passwords[this.state.submittedEmail] === submittedPassword) {
+      alert("Password is right");
+    } else alert("Password is not right");
   };
 
   render() {
@@ -55,10 +69,12 @@ class SignIn extends Component {
 
     let renderForm;
 
-    if (!this.state.emailSubmitted) {
-      renderForm = <Email handleClick={this.handleClick} />;
+    if (!this.state.IsEmailSubmitted) {
+      renderForm = <Email handleEmailSubmission={this.handleEmailSubmission} />;
     } else {
-      renderForm = <Password value={this.state.emailId} />;
+      renderForm = (
+        <Password handlePasswordSubmission={this.handlePasswordSubmission} />
+      );
     }
 
     return (

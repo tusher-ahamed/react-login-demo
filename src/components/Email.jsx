@@ -25,7 +25,6 @@ const styles = theme => ({
 
 class Email extends Component {
   state = {
-    emailId: ["xyz@example.com", "abc@example.com", "uvw@example.com"],
     submittedEmail: ""
   };
 
@@ -36,12 +35,8 @@ class Email extends Component {
   };
 
   handleSubmit = event => {
-    // alert("An email was submitted: " + this.state.submittedEmail);
     event.preventDefault();
-    if (this.state.emailId.includes(this.state.submittedEmail)) {
-      alert("email is found");
-      this.props.handleClick(this.state.submittedEmail);
-    } else alert("email is not found");
+    this.props.handleEmailSubmission(this.state.submittedEmail);
   };
 
   render() {
