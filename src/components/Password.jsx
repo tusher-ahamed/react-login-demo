@@ -42,7 +42,7 @@ class Password extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.value);
+    console.log(this.props);
 
     return (
       <form className={classes.form} onSubmit={this.handleSubmit}>

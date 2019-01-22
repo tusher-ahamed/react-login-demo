@@ -23,7 +23,7 @@ const styles = theme => ({
   paper: {
     marginTop: theme.spacing.unit * 8,
     width: "130%",
-    height: "50vh",
+    // height: "50vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -75,7 +75,10 @@ class SignIn extends Component {
       renderForm = <Email handleEmailSubmission={this.handleEmailSubmission} />;
     } else {
       renderForm = (
-        <Password handlePasswordSubmission={this.handlePasswordSubmission} />
+        <Password
+          value={this.state.submittedEmail}
+          handlePasswordSubmission={this.handlePasswordSubmission}
+        />
       );
     }
 

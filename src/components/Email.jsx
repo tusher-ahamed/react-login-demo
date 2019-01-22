@@ -58,6 +58,7 @@ class Email extends Component {
             autoComplete="email"
             value={this.state.submittedEmail}
             onChange={this.handleChange}
+            className={classes.input}
             autoFocus
           />
         </FormControl>
