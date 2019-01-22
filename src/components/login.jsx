@@ -52,10 +52,12 @@ class SignIn extends Component {
   };
 
   handleEmailSubmission = submittedEmail => {
-    this.setState({
-      submittedEmail: submittedEmail,
-      IsEmailSubmitted: true
-    });
+    if (this.state.emails.includes(submittedEmail)) {
+      this.setState({
+        submittedEmail: submittedEmail,
+        IsEmailSubmitted: true
+      });
+    } else alert("Email is not found. Please, provide correct email");
   };
 
   handlePasswordSubmission = submittedPassword => {
