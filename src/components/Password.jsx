@@ -6,11 +6,15 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   form: {
     width: "80%",
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
 
   submit: {
@@ -22,9 +26,16 @@ const styles = theme => ({
 class Password extends Component {
   render() {
     const { classes } = this.props;
+    console.log(this.props.value);
 
     return (
       <form className={classes.form}>
+        <Typography variant="h4" gutterBottom>
+          Welcome
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          {this.props.value}
+        </Typography>
         <FormControl margin="dense" required fullWidth>
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input

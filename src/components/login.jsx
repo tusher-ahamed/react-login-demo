@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Email from "./Email";
 import Password from "./Password";
@@ -40,11 +39,14 @@ const styles = theme => ({
 
 class SignIn extends Component {
   state = {
-    emailSubmitted: false
+    emailSubmitted: false,
+    emailId: ""
   };
 
-  handleClick = e => {
-    e.preventDefault();
+  handleClick = param => {
+    this.setState({
+      emailId: param
+    });
     this.setState({ emailSubmitted: true });
   };
 
@@ -56,7 +58,7 @@ class SignIn extends Component {
     if (!this.state.emailSubmitted) {
       renderForm = <Email handleClick={this.handleClick} />;
     } else {
-      renderForm = <Password />;
+      renderForm = <Password value={this.state.emailId} />;
     }
 
     return (
@@ -65,12 +67,6 @@ class SignIn extends Component {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant="h4" gutterBottom>
-            Sign in
-          </Typography>
-          <Typography variant="h6" gutterBottom>
-            to continue to Demo
-          </Typography>
           {renderForm}
         </Paper>
       </div>

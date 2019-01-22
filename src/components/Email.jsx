@@ -6,11 +6,15 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   form: {
     width: "80%", // Fix IE 11 issue.
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
 
   submit: {
@@ -25,10 +29,19 @@ class Email extends Component {
     submittedEmail: ""
   };
 
-  handleNext = () => {};
+  handleChange = event => {
+    this.setState({
+      submittedEmail: event.target.value
+    });
+  };
 
-  handleSubmit = () => {
-    alert("An email was submitted: ", this.state.submittedEmail);
+  handleSubmit = event => {
+    // alert("An email was submitted: " + this.state.submittedEmail);
+    event.preventDefault();
+    if (this.state.emailId.includes(this.state.submittedEmail)) {
+      alert("email is found");
+      this.props.handleClick(this.state.submittedEmail);
+    } else alert("email is not found");
   };
 
   render() {
@@ -36,6 +49,12 @@ class Email extends Component {
 
     return (
       <form className={classes.form} onSubmit={this.handleSubmit}>
+        <Typography variant="h4" gutterBottom>
+          Sign in
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          to continue to Demo
+        </Typography>
         <FormControl margin="normal" required fullWidth>
           <InputLabel htmlFor="email">Enter email</InputLabel>
           <Input
@@ -43,6 +62,7 @@ class Email extends Component {
             name="email"
             autoComplete="email"
             value={this.state.submittedEmail}
+            onChange={this.handleChange}
             autoFocus
           />
         </FormControl>
@@ -52,7 +72,6 @@ class Email extends Component {
             size="large"
             variant="outlined"
             className={classes.submit}
-            onClick={this.handleNext}
           >
             Next
           </Button>
