@@ -20,14 +20,31 @@ const styles = theme => ({
 });
 
 class Email extends Component {
+  state = {
+    emailId: ["xyz@example.com", "abc@example.com", "uvw@example.com"],
+    submittedEmail: ""
+  };
+
+  handleNext = () => {};
+
+  handleSubmit = () => {
+    alert("An email was submitted: ", this.state.submittedEmail);
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
-      <form className={classes.form}>
-        <FormControl margin="normal" size="large" required fullWidth>
+      <form className={classes.form} onSubmit={this.handleSubmit}>
+        <FormControl margin="normal" required fullWidth>
           <InputLabel htmlFor="email">Enter email</InputLabel>
-          <Input id="email" name="email" autoComplete="email" autoFocus />
+          <Input
+            id="email"
+            name="email"
+            autoComplete="email"
+            value={this.state.submittedEmail}
+            autoFocus
+          />
         </FormControl>
         <Grid container justify="center">
           <Button
@@ -35,7 +52,7 @@ class Email extends Component {
             size="large"
             variant="outlined"
             className={classes.submit}
-            onClick={this.props.handleClick}
+            onClick={this.handleNext}
           >
             Next
           </Button>

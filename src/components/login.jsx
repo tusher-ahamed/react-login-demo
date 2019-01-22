@@ -11,7 +11,7 @@ import Password from "./Password";
 const styles = theme => ({
   main: {
     width: "auto",
-    display: "block", // Fix IE 11 issue.
+    display: "block",
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -40,21 +40,20 @@ const styles = theme => ({
 
 class SignIn extends Component {
   state = {
-    value: 0
+    emailSubmitted: false
   };
 
   handleClick = e => {
     e.preventDefault();
-    this.setState({ value: 1 });
+    this.setState({ emailSubmitted: true });
   };
 
   render() {
     const { classes } = this.props;
-    console.log(this.state.value);
 
     let renderForm;
 
-    if (this.state.value === 0) {
+    if (!this.state.emailSubmitted) {
       renderForm = <Email handleClick={this.handleClick} />;
     } else {
       renderForm = <Password />;
