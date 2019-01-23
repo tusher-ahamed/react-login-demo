@@ -6,6 +6,8 @@ import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Email from "./Email";
 import Password from "./Password";
+// import { withRouter } from "react-router";
+import history from "./history";
 
 const styles = theme => ({
   main: {
@@ -62,7 +64,8 @@ class SignIn extends Component {
 
   handlePasswordSubmission = submittedPassword => {
     if (this.state.passwords[this.state.submittedEmail] === submittedPassword) {
-      alert("Password is right");
+      console.log("password is right");
+      history.push("/home");
     } else alert("Password is not right");
   };
 
@@ -100,4 +103,8 @@ SignIn.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(SignIn);
+// const componentWithRoute = withRouter(SignIn);
+
+const componentWithStyles = withStyles(styles, { withTheme: true })(SignIn);
+
+export default componentWithStyles;
