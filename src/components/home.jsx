@@ -3,13 +3,18 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-const styles = theme => ({});
+const styles = theme => ({
+  text: {
+    margin: theme.spacing.unit * 3
+  }
+});
 
 class Home extends Component {
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <Typography variant="h1" gutterBottom>
+        <Typography variant="h2" gutterBottom className={classes.text}>
           Hello World
         </Typography>
       </div>
