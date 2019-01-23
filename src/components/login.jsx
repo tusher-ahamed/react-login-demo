@@ -6,7 +6,6 @@ import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Email from "./Email";
 import Password from "./Password";
-// import { withRouter } from "react-router";
 import history from "./history";
 
 const styles = theme => ({
@@ -102,8 +101,6 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
-
-// const componentWithRoute = withRouter(SignIn);
 
 const componentWithStyles = withStyles(styles, { withTheme: true })(SignIn);
 
