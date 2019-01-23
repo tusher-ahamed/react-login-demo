@@ -19,7 +19,8 @@ const styles = theme => ({
 
   submit: {
     marginTop: theme.spacing.unit * 3,
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#424242"
   }
 });
 
@@ -44,10 +45,10 @@ class Email extends Component {
 
     return (
       <form className={classes.form} onSubmit={this.handleSubmit}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" color="primary" gutterBottom>
           Sign in
         </Typography>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" color="primary" gutterBottom>
           to continue to Demo
         </Typography>
         <FormControl margin="normal" required fullWidth>
@@ -63,12 +64,7 @@ class Email extends Component {
           />
         </FormControl>
         <Grid container justify="center">
-          <Button
-            type="submit"
-            size="large"
-            variant="outlined"
-            className={classes.submit}
-          >
+          <Button type="submit" size="large" className={classes.submit}>
             Next
           </Button>
         </Grid>

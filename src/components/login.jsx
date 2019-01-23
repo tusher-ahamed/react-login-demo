@@ -7,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Email from "./Email";
 import Password from "./Password";
 import history from "./history";
-import { Auth } from 'aws-amplify';
+import { Auth } from "aws-amplify";
 
 const styles = theme => ({
   main: {
@@ -53,29 +53,29 @@ class SignIn extends Component {
     submittedPassword: ""
   };
 
-  handleEmailSubmission = async (submittedEmail) => {
-    
-    let code = '000000'
+  handleEmailSubmission = async submittedEmail => {
+    let code = "000000";
     let userExists = false;
 
     try {
       await Auth.confirmSignUp(submittedEmail, code, {
-            // If set to False, the API will throw an AliasExistsException error if the phone number/email used already exists as an alias with a different user
-            forceAliasCreation: false})
-  } catch(error) {
-    console.log(error);
-    switch ( error.code ) {
-      case 'UserNotFoundException':
-        userExists = false;
-        break;
-      case 'NotAuthorizedException':
-         userExists = true;
-        break;
-      default:
-         break;
-     }
+        // If set to False, the API will throw an AliasExistsException error if the phone number/email used already exists as an alias with a different user
+        forceAliasCreation: false
+      });
+    } catch (error) {
+      console.log(error);
+      switch (error.code) {
+        case "UserNotFoundException":
+          userExists = false;
+          break;
+        case "NotAuthorizedException":
+          userExists = true;
+          break;
+        default:
+          break;
+      }
     }
-    
+
     /*Auth.confirmSignUp(submittedEmail, code, {
         // If set to False, the API will throw an AliasExistsException error if the phone number/email used already exists as an alias with a different user
         forceAliasCreation: false
@@ -99,8 +99,6 @@ class SignIn extends Component {
             }
         } )*/
 
-    
-    
     if (userExists || this.state.emails.includes(submittedEmail)) {
       this.setState({
         submittedEmail: submittedEmail,
@@ -109,18 +107,20 @@ class SignIn extends Component {
     } else alert("Email is not found. Please, provide correct email");
   };
 
-  handlePasswordSubmission = async (submittedPassword) => {
-    
+  handlePasswordSubmission = async submittedPassword => {
     let user;
 
     try {
-       user = await Auth.signIn(this.state.submittedEmail, submittedPassword);
-       console.log(user);
-    } catch(error) {
-       console.log(error)
+      user = await Auth.signIn(this.state.submittedEmail, submittedPassword);
+      console.log(user);
+    } catch (error) {
+      console.log(error);
     }
 
-    if (user || this.state.passwords[this.state.submittedEmail] === submittedPassword) {
+    if (
+      user ||
+      this.state.passwords[this.state.submittedEmail] === submittedPassword
+    ) {
       console.log("Authentication successful!!");
       history.push("/home");
     }

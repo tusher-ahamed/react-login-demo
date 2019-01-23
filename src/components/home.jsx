@@ -12,6 +12,7 @@ const styles = theme => ({
 class Home extends Component {
   render() {
     const { classes } = this.props;
+    console.log(this.props.theme.palette);
     return (
       <div>
         <Typography variant="h2" gutterBottom className={classes.text}>

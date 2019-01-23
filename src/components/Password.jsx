@@ -19,7 +19,8 @@ const styles = theme => ({
 
   submit: {
     marginTop: theme.spacing.unit * 3,
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#424242"
   }
 });
 
@@ -46,10 +47,10 @@ class Password extends Component {
 
     return (
       <form className={classes.form} onSubmit={this.handleSubmit}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" color="primary" gutterBottom>
           Welcome
         </Typography>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" color="primary" gutterBottom>
           {this.props.value}
         </Typography>
         <FormControl margin="dense" required fullWidth>
@@ -64,12 +65,7 @@ class Password extends Component {
           />
         </FormControl>
         <Grid container justify="center">
-          <Button
-            type="submit"
-            size="large"
-            variant="outlined"
-            className={classes.submit}
-          >
+          <Button type="submit" size="large" className={classes.submit}>
             Submit
           </Button>
         </Grid>
